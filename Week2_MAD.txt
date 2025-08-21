@@ -1,0 +1,162 @@
+WEEK2 
+package com.example.addtwonumbers;
+
+import android.os.Bundle;
+import androidx.appcompat.app.AppCompatActivity;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.view.View;
+import android.widget.Toast;
+
+public class MainActivity extends AppCompatActivity {
+     EditText inputNum1,inputNum2;
+     TextView result;
+     Button btnAdd,btnReset;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+            //my components
+            inputNum1 = findViewById(R.id.Number1);
+            inputNum2 = findViewById(R.id.Number2);
+            btnAdd = findViewById(R.id.btnAdd);
+            btnReset = findViewById(R.id.btnReset);
+            result = findViewById(R.id.result);
+
+            btnAdd.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    String num1Str = inputNum1.getText().toString().trim();
+                    String num2Str = inputNum2.getText().toString().trim();
+
+                    if (num1Str.isEmpty() || num2Str.isEmpty()) {
+                        Toast.makeText(MainActivity.this, "Please enter both numbers", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+
+                    try{
+                        int firstNum = Integer.parseInt(num1Str);
+                        int secondNum = Integer.parseInt(num2Str);
+                        int sum = firstNum + secondNum;
+                        result.setText(String.valueOf(sum));
+                        Toast.makeText(MainActivity.this, "Sum: " + sum, Toast.LENGTH_SHORT).show();
+                    }catch(NumberFormatException e){
+                        Toast.makeText(MainActivity.this, "Enter valid integers", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+            btnReset.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    inputNum1.setText("");
+                    inputNum2.setText("");
+                    result.setText("");
+
+                }
+            });
+
+    }
+}
+
+
+activity_main.xml
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <EditText
+        android:id="@+id/Number1"
+        android:layout_width="321dp"
+        android:layout_height="129dp"
+        android:hint="@string/enter_first"
+        android:ems="10"
+        android:inputType="text"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.433"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.101"
+        tools:ignore="Autofill"/>
+
+    <EditText
+        android:id="@+id/Number2"
+        android:layout_width="333dp"
+        android:layout_height="120dp"
+        android:hint="@string/enter_second"
+        android:ems="10"
+        android:inputType="text"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.341"
+        tools:ignore="Autofill" />
+
+    <Button
+        android:id="@+id/btnAdd"
+        android:layout_width="167dp"
+        android:layout_height="69dp"
+        android:backgroundTint="@color/blue"
+        android:text="@string/btn_add"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.131"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.602" />
+
+    <Button
+        android:id="@+id/btnReset"
+        android:layout_width="172dp"
+        android:layout_height="71dp"
+        android:layout_marginStart="220dp"
+        android:backgroundTint="@color/red"
+        android:text="@string/btn_reset"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.603" />
+
+    <TextView
+        android:id="@+id/result"
+        android:layout_width="215dp"
+        android:layout_height="75dp"
+        android:hint="@string/result"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.754" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+#strings.xml
+
+<resources>
+    <string name="app_name">ADD NUMBERS</string>
+    <string name="enter_first">Enter First Number</string>
+    <string name="enter_second">Enter Second number</string>
+    <string name="btn_add">ADD</string>
+    <string name="btn_reset">RESET</string>
+    <string name="result">Result</string>
+
+</resources>
+
+#colors.xml 
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="blue">#0028FF</color>
+    <color name="red">#FF0054</color>
+
+</resources>
+
+

@@ -1,0 +1,129 @@
+Week 1 TASK2 and TASK3 AND TASK4
+#TASK2
+package com.example.toastdisplay;
+
+import android.os.Bundle;
+
+import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+
+public class MainActivity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        Toast.makeText(this,"Welcome Toast Message",Toast.LENGTH_LONG).show();
+
+    }
+}
+
+
+
+
+#TASK3
+MainActivity.java
+
+package com.example.toastbuttonclick;
+import android.os.Bundle;
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
+
+public class MainActivity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        Button welcomeButton = findViewById(R.id.WelcomeButton);
+        welcomeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getApplicationContext(),"Hello",Toast.LENGTH_SHORT).show();
+            }
+        });
+
+    }
+}
+
+activity_main.xml
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <Button
+        android:id="@+id/WelcomeButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Show Welcome"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+#TASK4
+package com.example.activitylifecycle;
+
+import android.os.Bundle;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.util.Log;
+
+import android.widget.Toast;
+
+public class MainActivity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        Log.d("Activity Lifecycle","onCreate invoked");
+        Toast.makeText(this,"onCreate invoked",Toast.LENGTH_SHORT).show();
+
+    }
+    @Override
+    protected void onResume(){
+        super.onResume();
+        Log.d("Activity Lifecycle","onResume invoked");
+        Toast.makeText(this,"onResume invoked",Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    protected void onPause(){
+        super.onPause();
+        Log.d("Activity Lifecycle","onPause invoked");
+        Toast.makeText(this,"onPause invoked",Toast.LENGTH_SHORT).show();
+    }
+    @Override
+    protected void onStop(){
+        super.onStop();
+        Log.d("Activity Lifecycle","onStop invoked");
+        Toast.makeText(this,"onStop invoked",Toast.LENGTH_SHORT).show();
+    }
+    @Override
+    protected void onRestart(){
+        super.onRestart();
+        Log.d("Activity Lifecycle","onRestart invoked");
+        Toast.makeText(this,"onRestart invoked",Toast.LENGTH_SHORT).show();
+    }
+    @Override
+    protected void onDestroy(){
+        super.onDestroy();
+        Log.d("Activity Lifecycle","onDestroy invoked");
+        Toast.makeText(this,"onDestroy invoked",Toast.LENGTH_SHORT).show();
+    }
+
+}
